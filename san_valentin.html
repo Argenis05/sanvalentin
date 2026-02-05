@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín? 💝</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        p {
+            color: #555;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        #btnSi {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        #btnSi:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.6);
+        }
+
+        #btnNo {
+            background: #ecf0f1;
+            color: #7f8c8d;
+            position: relative;
+        }
+
+        #btnNo:hover {
+            background: #bdc3c7;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: float 3s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .mensaje-final {
+            display: none;
+            animation: aparecer 0.5s ease-in-out;
+        }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            position: absolute;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .emoji {
+            font-size: 80px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="pregunta">
+        <div class="emoji">💝</div>
+        <h1>¿Quieres ser mi San Valentín?</h1>
+        <p>Me harías la persona más feliz del mundo... 🥰</p>
+        <div class="buttons">
+            <button id="btnSi">¡Sí! 💕</button>
+            <button id="btnNo">No</button>
+        </div>
+    </div>
+
+    <div class="container mensaje-final" id="mensajeFinal">
+        <div class="emoji">🎉</div>
+        <h1>¡SIIIIII! 💖</h1>
+        <p>¡Sabía que dirías que sí! Eres increíble ✨</p>
+        <p>Este 14 de febrero será especial 🌹</p>
+    </div>
+
+    <!-- Corazones flotantes -->
+    <div class="heart" style="left: 10%; top: 20%; animation-delay: 0s;">❤️</div>
+    <div class="heart" style="left: 80%; top: 30%; animation-delay: 1s;">💕</div>
+    <div class="heart" style="left: 15%; top: 70%; animation-delay: 2s;">💖</div>
+    <div class="heart" style="left: 85%; top: 60%; animation-delay: 1.5s;">💗</div>
+    <div class="heart" style="left: 50%; top: 10%; animation-delay: 0.5s;">💝</div>
+
+    <script>
+        const btnSi = document.getElementById('btnSi');
+        const btnNo = document.getElementById('btnNo');
+        const pregunta = document.getElementById('pregunta');
+        const mensajeFinal = document.getElementById('mensajeFinal');
+
+        let intentos = 0;
+
+        // Cuando dice SÍ
+        btnSi.addEventListener('click', function() {
+            pregunta.style.display = 'none';
+            mensajeFinal.style.display = 'block';
+            crearConfetti();
+        });
+
+        // Cuando intenta decir NO (el botón se escapa)
+        btnNo.addEventListener('mouseenter', function() {
+            intentos++;
+            
+            // El botón NO se mueve a una posición aleatoria
+            const maxX = window.innerWidth - 200;
+            const maxY = window.innerHeight - 100;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            btnNo.style.position = 'fixed';
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+
+            // El botón SÍ se agranda con cada intento
+            const nuevoTamano = 15 + (intentos * 5);
+            btnSi.style.padding = nuevoTamano + 'px ' + (nuevoTamano * 2) + 'px';
+
+            // Después de 3 intentos, cambiar el texto
+            if (intentos === 3) {
+                btnNo.textContent = '¿Segura/o?';
+            } else if (intentos === 5) {
+                btnNo.textContent = 'Piénsalo mejor';
+            } else if (intentos === 7) {
+                btnNo.textContent = '¡Dale que sí! 😊';
+            }
+        });
+
+        // Función para crear confetti
+        function crearConfetti() {
+            const colores = ['#ff0000', '#ff69b4', '#ff1493', '#ffc0cb', '#ff6347'];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colores[Math.floor(Math.random() * colores.length)];
+                    confetti.style.animationDelay = Math.random() * 3 + 's';
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+    </script>
+</body>
+</html>
