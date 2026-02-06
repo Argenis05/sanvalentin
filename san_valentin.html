@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¿Quieres ser mi San Valentín? 💝</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Sacramento&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,8 +13,8 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Tangerine', cursive;
+            background: linear-gradient(135deg, #ffb3d9 0%, #ff69b4 50%, #ff1493 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -27,22 +28,26 @@
             padding: 50px;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
+            max-width: 600px;
             position: relative;
             z-index: 10;
         }
 
         h1 {
-            color: #e74c3c;
-            font-size: 2.5em;
+            color: #ff69b4;
+            font-size: 3.5em;
             margin-bottom: 20px;
             animation: pulse 1.5s ease-in-out infinite;
+            font-family: 'Tangerine', cursive;
+            font-weight: 700;
         }
 
         p {
-            color: #555;
-            font-size: 1.2em;
+            color: #ff1493;
+            font-size: 2em;
             margin-bottom: 30px;
+            font-family: 'Tangerine', cursive;
+            font-weight: 700;
         }
 
         .buttons {
@@ -54,12 +59,13 @@
 
         button {
             padding: 15px 40px;
-            font-size: 1.1em;
+            font-size: 1.8em;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: bold;
+            font-weight: 700;
+            font-family: 'Tangerine', cursive;
         }
 
         #btnSi {
@@ -90,6 +96,16 @@
             opacity: 0.7;
         }
 
+        /* Snoopys flotantes como imágenes - MÁS GRANDES */
+        .snoopy-img {
+            position: absolute;
+            width: 150px;
+            height: auto;
+            animation: floatSnoopy 4s ease-in-out infinite;
+            opacity: 0.9;
+            z-index: 5;
+        }
+
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -98,6 +114,15 @@
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
+        }
+
+        @keyframes floatSnoopy {
+            0%, 100% { 
+                transform: translateY(0px) rotate(-5deg); 
+            }
+            50% { 
+                transform: translateY(-30px) rotate(5deg); 
+            }
         }
 
         .mensaje-final {
@@ -130,12 +155,32 @@
             font-size: 80px;
             margin: 20px 0;
         }
+
+        .imagen-pc {
+            margin: 20px 0;
+        }
+
+        .imagen-pc img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: aparecer 0.8s ease-in-out;
+        }
     </style>
 </head>
 <body>
+    <!-- Música de fondo -->
+    <audio id="musicaFondo" loop>
+        <source src="amor.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="container" id="pregunta">
-        <div class="emoji">💝</div>
-        <h1>¿Quieres ser mi San Valentín?</h1>
+        <div class="imagen-pc">
+            <img src="snop.jpg" alt="Snoopy" id="fotoPc">
+        </div>
+        <h1>Maria Fernanda Amor de mi vida ¿Quieres ser mi San Valentín?</h1>
         <p>Me harías la persona más feliz del mundo... 🥰</p>
         <div class="buttons">
             <button id="btnSi">¡Sí! 💕</button>
@@ -143,11 +188,14 @@
         </div>
     </div>
 
-    <div class="container mensaje-final" id="mensajeFinal">
-        <div class="emoji">🎉</div>
-        <h1>¡SIIIIII! 💖</h1>
-        <p>¡Sabía que dirías que sí! Eres increíble ✨</p>
-        <p>Este 14 de febrero será especial 🌹</p>
+     <div class="container mensaje-final" id="mensajeFinal">
+        <div class="imagen-pc">
+            <img src="yo.png" alt="Foto especial" id="fotoPc">
+        </div>
+        <h1>¡Siiiiiiiii! 💖</h1>
+        <p>¡Sabía que dirías que sí! Eres el amor de mi vida ❤️</p>
+        <p>Este 14 de febrero será nuestro primer de muchos San Valentin Juntos🌹</p>
+        <p>M & A </p>
     </div>
 
     <!-- Corazones flotantes -->
@@ -157,19 +205,38 @@
     <div class="heart" style="left: 85%; top: 60%; animation-delay: 1.5s;">💗</div>
     <div class="heart" style="left: 50%; top: 10%; animation-delay: 0.5s;">💝</div>
 
+    <!-- Snoopys flotantes (imágenes) - MÁS GRANDES -->
+    <img src="snopy.png" class="snoopy-img" style="left: 5%; top: 15%; animation-delay: 0s;">
+    <img src="snopy.png" class="snoopy-img" style="left: 90%; top: 25%; animation-delay: 1.2s;">
+    <img src="snopy.png" class="snoopy-img" style="left: 8%; top: 65%; animation-delay: 2s;">
+    <img src="snopy.png" class="snoopy-img" style="left: 88%; top: 75%; animation-delay: 0.8s;">
+    <img src="snopy.png" class="snoopy-img" style="left: 45%; top: 5%; animation-delay: 1.5s;">
+    <img src="snopy.png" class="snoopy-img" style="left: 50%; top: 85%; animation-delay: 2.3s;">
+
     <script>
         const btnSi = document.getElementById('btnSi');
         const btnNo = document.getElementById('btnNo');
         const pregunta = document.getElementById('pregunta');
         const mensajeFinal = document.getElementById('mensajeFinal');
+        const musica = document.getElementById('musicaFondo');
 
         let intentos = 0;
+
+        // Reproducir música al cargar la página
+        window.addEventListener('load', function() {
+            // Los navegadores requieren interacción del usuario para reproducir audio
+            document.body.addEventListener('click', function() {
+                musica.play().catch(e => console.log('Error al reproducir:', e));
+            }, { once: true });
+        });
 
         // Cuando dice SÍ
         btnSi.addEventListener('click', function() {
             pregunta.style.display = 'none';
             mensajeFinal.style.display = 'block';
             crearConfetti();
+            // Asegurar que la música esté sonando
+            musica.play().catch(e => console.log('Error al reproducir:', e));
         });
 
         // Cuando intenta decir NO (el botón se escapa)
@@ -193,11 +260,11 @@
 
             // Después de 3 intentos, cambiar el texto
             if (intentos === 3) {
-                btnNo.textContent = '¿Segura/o?';
+                btnNo.textContent = '¿Segura?';
             } else if (intentos === 5) {
                 btnNo.textContent = 'Piénsalo mejor';
             } else if (intentos === 7) {
-                btnNo.textContent = '¡Dale que sí! 😊';
+                btnNo.textContent = '¡Ya Fernanda dale que sí! 😊😡';
             }
         });
 
